@@ -473,7 +473,7 @@ footer {
 
     if (header) body.appendChild(header);
 
-    fetch("./proxies/proxies.html")
+    fetch("https://cdn.jsdelivr.net/gh/CidCaribou/Games-3.0@refs/heads/main/Games%203.0/Proxies/proxies.html")
       .then((response) => {
         if (!response.ok) throw new Error("Proxy file not found, contact Wasd");
         return response.text();
@@ -499,7 +499,7 @@ footer {
 
     if (header) body.appendChild(header);
 
-    fetch("./Proxy Checker/proxychecker.html")
+    fetch("https://cdn.jsdelivr.net/gh/CidCaribou/Games-3.0@refs/heads/main/Games%203.0/Proxy%20Checker/proxychecker.html")
       .then((response) => {
         if (!response.ok) throw new Error("GameSites file not found");
         return response.text();
