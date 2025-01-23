@@ -1,0 +1,133 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxies</title>
+  </head>
+  <style>
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: linear-gradient(to bottom, #3a3a3a, #1c1c1c);
+      border-radius: 15px;
+      height: 350px; 
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem; 
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    .box .highlight {
+      font-weight: bold;
+    }
+
+    .game .highlight {
+      color: red;
+    }
+    .gamesites-logo {
+      max-width: 75px; 
+      height: auto; 
+      margin-bottom: 10px; 
+}
+
+    .shuttle .highlight {
+      color: magenta;
+    }
+    .shuttle-logo {
+      max-width: 80px; 
+      height: auto; 
+      margin-bottom: 10px; 
+}
+
+    .rammer .highlight {
+      color: #3b82f6;
+    }
+    .rammerhead-logo {
+      max-width: 80px; 
+      height: auto; 
+      margin-bottom: 10px; 
+    }
+
+    .interstellar .highlight {
+      color: #7b00ff;
+    }
+
+    .interstellar-logo {
+      max-width: 80px; 
+      height: auto; 
+      margin-bottom: 10px; 
+    }
+    .Utopia .highlight {
+      color: #0062d3;
+    }
+
+    .utopia-logo {
+      max-width: 80px; 
+      height: auto; 
+      margin-bottom: 10px; 
+    }
+
+    @media (max-width: 900px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .box {
+        height: 250px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+  <body>
+    <main>
+      <h1 class="title">Proxies</h1>
+      <div class="grid-container">
+
+        <div class="box game" id="card1">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Video-Game-Controller-Icon-D-Edit.svg/2048px-Video-Game-Controller-Icon-D-Edit.svg.png" alt="GameSites" class="gamesites-logo" />
+          <span class="highlight">Game</span> Sites
+        </div>
+
+        <div class="box shuttle" id="card2">
+          <img src="https://vysterium-two.vercel.app/icons/prx/shuttle.svg" alt="Shuttle" class="shuttle-logo" />
+          <span class="highlight">Shuttle</span> Sites
+        </div>
+
+        <div class="box rammer" id="card3">
+          <img src="https://demo-opensource.rammerhead.org/logo.png" alt="Rammerhead" class="rammerhead-logo" />
+          <span class="highlight">Rammer</span> Head
+        </div>
+
+        <div class="box interstellar" id="card4">
+          <img src="https://vysterium-two.vercel.app/icons/prx/interstellar.svg" alt="Interstellar" class="interstellar-logo" />
+          <span class="highlight">Interstellar</span> Sites
+        </div>
+
+        <div class="box utopia" id="card5">
+          <img src="https://avatars.githubusercontent.com/u/126352888?s=280&v=4" alt="Utopia Logo" class="utopia-logo" />
+          <span class="highlight">Utopia</span> Sites
+        </div>
+        </main>
+  </body>
+</html>
