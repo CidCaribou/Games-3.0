@@ -60,6 +60,10 @@ async function checkProxy() {
 
 
 Method 2 Check via DNS Resolution
+
+
+
+
 async function checkProxy() {
     const statusDiv = document.getElementById('status');
     const urlInput = document.getElementById('url-input');
