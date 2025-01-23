@@ -1,0 +1,106 @@
+ Use a GET Request with a Fallback
+
+async function checkProxy() {
+    const statusDiv = document.getElementById('status');
+    const urlInput = document.getElementById('url-input');
+    const url = urlInput.value.trim();
+
+    // Validate if URL is entered
+    if (!url) {
+        statusDiv.textContent = "Please enter a valid link!";
+        statusDiv.style.color = "#e74c3c"; // Red for error
+        return;
+    }
+
+    // Add "http://" if missing
+    let formattedUrl = url;
+    if (!/^https?:\/\//i.test(url)) {
+        formattedUrl = "http://" + url;
+    }
+
+    statusDiv.textContent = "Checking link...";
+    statusDiv.style.color = "#ccc"; // Neutral color
+
+    try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000); // Timeout after 5 seconds
+
+        // Test the URL using fetch with GET request
+        const response = await fetch(formattedUrl, {
+            method: 'GET',
+            mode: 'no-cors', // Attempt to bypass CORS issues (limited error info)
+            signal: controller.signal,
+        });
+
+        clearTimeout(timeout);
+
+        if (response.ok || response.type === 'opaque') { // `opaque` for CORS-restricted responses
+            statusDiv.textContent = "The link is working!";
+            statusDiv.style.color = "#2ecc71"; // Green for success
+        } else {
+            statusDiv.textContent = `The link is not working. Status code: ${response.status}`;
+            statusDiv.style.color = "#e74c3c"; // Red for error
+        }
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            statusDiv.textContent = "The request timed out. The server might be unreachable.";
+        } else {
+            statusDiv.textContent = "The link is not working or invalid.";
+        }
+        statusDiv.style.color = "#e74c3c"; // Red for failure
+        console.error("Error checking link:", error);
+    }
+}
+
+
+
+
+
+
+
+
+Method 2 Check via DNS Resolution
+async function checkProxy() {
+    const statusDiv = document.getElementById('status');
+    const urlInput = document.getElementById('url-input');
+    const url = urlInput.value.trim();
+
+    // Validate if URL is entered
+    if (!url) {
+        statusDiv.textContent = "Please enter a valid link!";
+        statusDiv.style.color = "#e74c3c"; // Red for error
+        return;
+    }
+
+    // Extract domain from the URL
+    let domain;
+    try {
+        const formattedUrl = new URL(url.startsWith('http') ? url : `http://${url}`);
+        domain = formattedUrl.hostname;
+    } catch {
+        statusDiv.textContent = "Invalid URL. Please try again.";
+        statusDiv.style.color = "#e74c3c"; // Red for error
+        return;
+    }
+
+    statusDiv.textContent = "Checking link...";
+    statusDiv.style.color = "#ccc"; // Neutral color
+
+    try {
+        // Use Google's DNS resolver API
+        const dnsResponse = await fetch(`https://dns.google/resolve?name=${domain}`);
+        const dnsData = await dnsResponse.json();
+
+        if (dnsData.Status === 0) {
+            statusDiv.textContent = "The link is working!";
+            statusDiv.style.color = "#2ecc71"; // Green for success
+        } else {
+            statusDiv.textContent = "The link is not reachable.";
+            statusDiv.style.color = "#e74c3c"; // Red for error
+        }
+    } catch (error) {
+        statusDiv.textContent = "Failed to check the link. Please try again.";
+        statusDiv.style.color = "#e74c3c"; // Red for failure
+        console.error("Error checking link:", error);
+    }
+}
