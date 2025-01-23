@@ -144,7 +144,6 @@
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000); 
 
-        // Test the URL using fetch with GET request
         const response = await fetch(formattedUrl, {
             method: 'GET',
             mode: 'no-cors', 
