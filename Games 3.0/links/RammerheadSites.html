@@ -33,7 +33,16 @@
             border-radius: 15px;
             background: linear-gradient(to bottom, #2e2323, #1c1c1c);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-height: 900px; 
+            overflow-y: auto; 
+            
+            -webkit-overflow-scrolling: touch;
         }
+        
+        .table-container::-webkit-scrollbar {
+            display: none;
+        }
+        
 
         .row {
             display: flex;
